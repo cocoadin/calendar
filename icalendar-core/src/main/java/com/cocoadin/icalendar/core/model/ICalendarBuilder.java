@@ -97,8 +97,9 @@ public class ICalendarBuilder {
     private static void writeEvent(BufferedWriter writer, ICalendarEvent event) throws IOException {
         // 定义事件数据
         writer.write(String.format(format,CalConstants.KEY_BEGIN,event.getBegin()));
+        writer.write(String.format(format,CalConstants.KEY_UID,UUID.randomUUID().toString()));
         writer.write(String.format(specialFormat,CalConstants.KEY_DTSTAMP,CalConstants.KEY_VALUE,CalConstants.KEY_DATE,event.getDtStamp()));
-        writer.write(String.format(specialFormat,CalConstants.KEY_DTSTAMP,CalConstants.KEY_DTSTART,CalConstants.KEY_DATE,event.getDtStart()));
+        writer.write(String.format(specialFormat,CalConstants.KEY_DTSTART,CalConstants.KEY_VALUE,CalConstants.KEY_DATE,event.getDtStart()));
         if (StringUtils.isNoneBlank(event.getDtEnd())){
             writer.write(String.format(specialFormat,CalConstants.KEY_DTEND,CalConstants.KEY_DTSTART,CalConstants.KEY_DATE,event.getDtEnd()));
         }
